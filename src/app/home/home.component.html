@@ -1,1 +1,57 @@
-<h1>Cobiro start page</h1>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a [routerLink]="items" class="nav-link active">
+              Marketing Plan
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="items" class="nav-link">
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="items" class="nav-link">
+              My ads
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="items" class="nav-link">
+              Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="items" class="nav-link">
+              Cobiro Store
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="col-md-9 col-lg-10">
+      <div class="">
+        <div class='row'>
+          <div class="form-group">
+            <input [(ngModel)]='listFilter' placeholder="Search" type="text" class="form-control" />
+          </div>
+        </div>
+        <div class='table-responsive'>
+          <table class='table' *ngIf='items && items.length'>
+            <tbody>
+              <tr *ngFor='let item of filteredItems'>
+                <td>{{ item.title }}</td>
+                <td class="float-right"><button type="button" class="btn btn-primary" [routerLink]="['/item-details/', item.id]">Button</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
